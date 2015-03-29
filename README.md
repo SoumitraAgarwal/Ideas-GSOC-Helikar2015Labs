@@ -23,4 +23,10 @@
 
  --------------------------------------------------------------------
 
+ Algorithm.js
+
+ Contains my proposed solution to the problem of finding closest node as
+ an alternative to quadTree
+
+ -------------------------------------------------------------------
  
