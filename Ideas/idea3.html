@@ -20,7 +20,6 @@
 		<script src="js/libs/dat.gui.js"></script>
 		<script src="js/renderers/Projector.js"></script>
 		<script src="js/renderers/CanvasRenderer.js"></script>
-		<script src="js/libs/dat.gui.js"></script>
 		<script src="js/libs/csg.js"></script>
 
 		<script>
@@ -102,9 +101,9 @@
 					particle.scale.x = particle.scale.y = 10;
 					var k=parseInt(Math.pow(Math.pow(particle.position.x,2)+Math.pow(particle.position.y,2)+Math.pow(particle.position.z,2),1/2));
 					var k1=parseInt(450*Math.pow(3,1/2));
-					var c=k/k1;
-					var hex=(1-c)*0xff;				
-					material.color.setHex(hex);
+					//var c=k/k1;
+					//var hex=(1-c)*0xff;				
+					//material.color.setHex(hex);
 					scene.add( particle );
 					geometry.vertices.push( particle.position );
 
