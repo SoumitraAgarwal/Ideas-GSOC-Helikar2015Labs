@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!-- saved from url=(0098)http://zufallsgenerator.github.io/assets/code/2014-01-26/spatialhash/examples/insert_retrieve.html -->
+<html style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Quadtree Test</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 12px;
+				padding: 40px;
+				background: #fff;
+			}
+			#canvasContainer {
+				background: #111;
+			}
+			#canvasContainer canvas {
+				display: block;
+				margin: 0 auto;
+				background: #000;
+			}
+		</style>
+	<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity 0.1s linear;-o-transition:opacity 0.1s linear;-moz-transition:opacity 0.1s linear;transition:opacity 0.1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1 !important}.dg.main:hover .close-button,.dg.main .close-button.drag{opacity:1}.dg.main .close-button{-webkit-transition:opacity 0.1s linear;-o-transition:opacity 0.1s linear;-moz-transition:opacity 0.1s linear;transition:opacity 0.1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save ul{margin-top:27px}.dg.a.has-save ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height 0.1s ease-out;-o-transition:height 0.1s ease-out;-moz-transition:height 0.1s ease-out;transition:height 0.1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid rgba(0,0,0,0)}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li > *{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.function,.dg .cr.function .property-name,.dg .cr.function *,.dg .cr.boolean,.dg .cr.boolean *{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0px 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco, monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px 'Lucida Grande', sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px 4px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.function:hover,.dg .cr.boolean:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}
+</style></head>
+	<body>
+    <h1>Spatial Hashing</h1>
+    <div id="controllerContainer" style="float: right;">
+    <div class="dg main" style="width: 245px;"><ul><li class="cr number has-slider"><div><span class="property-name">numberOfObjects</span><div class="c"><div><input type="text"></div><div class="slider"><div class="slider-fg" style="width: 19.9199199199199%;"></div></div></div></div></li><li class="cr number has-slider"><div><span class="property-name">sizePowerOfTwo</span><div class="c"><div><input type="text"></div><div class="slider"><div class="slider-fg" style="width: 9.67741935483871%;"></div></div></div></div></li></ul><div class="close-button" style="width: 245px;">Close Controls</div></div></div>
+		<div id="canvasContainer">
+			<canvas id="canvas" width="400" height="300"></canvas>
+		</div>
+		
+<!--		<script src="../quadtree.js"></script>-->
+		<script src="spatialhash.js"></script>
+    <script type="text/javascript" src="dat.gui.min.js"></script>
+		
+		<script>		
+		
+		(function(w, M) {
+      var config = {
+        numberOfObjects: 200,
+        sizePowerOfTwo: 4
+      };
+      var lastConfig = {};
+      
+      function saveLastConfig() {
+        lastConfig.numberOfObjects = config.numberOfObjects;
+        lastConfig.sizePowerOfTwo = config.sizePowerOfTwo;
+      }
+      
+      
+      
+      var gui = new dat.GUI({autoPlace: false});
+      var container = document.getElementById('controllerContainer');
+      container.appendChild(gui.domElement);
+      gui.add(config, "numberOfObjects", 1, 1000).step(1);
+      gui.add(config, "sizePowerOfTwo", 1, 32).step(1);
+      saveLastConfig();
+
+      			
+			w.requestAnimFrame = (function () {
+				return  w.requestAnimationFrame ||
+					w.webkitRequestAnimationFrame ||
+					w.mozRequestAnimationFrame ||
+					w.oRequestAnimationFrame ||
+					w.msRequestAnimationFrame ||
+					function (callback) {
+						w.setTimeout(callback, 1000 / 60);
+					};
+			})();
+			
+			var ctx = document.getElementById('canvas').getContext('2d');
+			
+			
+			/*
+			 * the main Quadtree
+			 */
+       /*
+			var myTree = new Quadtree({
+				x: 0,
+				y: 0,
+				width: 400,
+				height: 300
+			});
+      */
+      var myTree;
+      
+      function initSpatialHash() {
+        myTree = new SpatialHash(config.sizePowerOfTwo);
+      }
+      
+      initSpatialHash();
+			
+			/*
+			 * our objects will be stored here
+			 */
+			var myObjects = [];
+						
+			/*
+			 * our "hero"
+			 */
+			var myHero = {
+				x : 0,
+				y : 0,
+				width : 20,
+				height : 20
+			};
+			
+			
+			/*
+			 * create some objects and save them in myObjects
+			 */
+			var createObjects = function() {
+        myObjects.length = 0;
+				for( var i=0;i<config.numberOfObjects;i=i+1 ) {
+          myObjects.push({
+						x : randMinMax(10, 390),
+						y : randMinMax(10, 290),
+						width : randMinMax(10, 20),
+						height : randMinMax(10, 20),
+						vx: randMinMax(-1,1),
+						vy: randMinMax(-1,1),
+						check : false
+					});
+				}
+			};
+			
+			
+			/*
+			 * draw Quadtree nodes
+			 */
+			var drawQuadtree = function( node ) {
+				var 	bounds = node.bounds;
+			
+				//no subnodes? draw the current node
+				if( node.nodes.length === 0 ) {
+					ctx.strokeStyle = 'rgba(255,0,0,0.2)';
+					ctx.strokeRect(bounds.x, bounds.y, bounds.width, bounds.height);
+					
+				//has subnodes? drawQuadtree them!
+				} else {
+					for( var i=0;i<node.nodes.length;i=i+1 ) {
+						drawQuadtree( node.nodes[ i ] );
+					}
+				}
+			};
+			
+			/*
+			 * draw all objects in a given node 
+			 */
+			var drawObjects = function( node ) {
+				
+        /*
+				var obj;
+        */
+				var obj, objects = node.retrieve(); // get all
+
+				for( var i=0;i<objects.length;i=i+1 ) {
+					
+					obj = objects[ i ];
+					
+					if( obj.check ) {
+						ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+					} else {
+						ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+					}
+					
+					ctx.strokeRect( obj.x, obj.y, obj.width, obj.height );
+				}
+
+			};
+			
+			/*
+			 * position hero at mouse position
+			 */
+			var handleMousemove = function(e) {
+				
+				var 	mx, my;
+				
+				if(e.offsetX) {
+					mx = e.offsetX;
+					my = e.offsetY;
+				} else if(e.layerX) {
+					mx = e.layerX;
+					my = e.layerY;
+				}
+				
+				myHero.x = mx;
+				myHero.y = my;
+			};
+			
+			/*
+			 * return a random number between min and max
+			 */
+			var randMinMax = function(min, max) {
+				return min + (M.random() * (max - min));
+			};			
+			
+      function updateDatGui() {
+        if (lastConfig.numberOfObjects !== config.numberOfObjects) {
+          createObjects();
+        }
+
+        if (lastConfig.sizePowerOfTwo !== config.sizePowerOfTwo) {
+          initSpatialHash();
+        }
+                
+        saveLastConfig();
+      }			
+			
+			/*
+			 * our main loop
+			 */
+			var loop = function() {
+        updateDatGui();
+				
+				var returnObjects = [];
+				
+				//clear the tree
+				myTree.clear();
+				ctx.clearRect(0, 0, 400, 300);
+				
+				//update myObjects and insert them into the tree again
+				for( var i=0;i<myObjects.length;i=i+1 ) {
+					
+					myObjects[i].x += myObjects[i].vx;
+					myObjects[i].y += myObjects[i].vy;
+					myObjects[i].check = false;
+					
+					if( myObjects[i].x > 400 ) myObjects[i].x = 0;
+					if( myObjects[i].x < 0 ) myObjects[i].x = 400;
+					if( myObjects[i].y > 300 ) myObjects[i].y = 0;
+					if( myObjects[i].y < 0 ) myObjects[i].y = 300;
+					
+					
+					myTree.insert( myObjects[i] );
+				}
+				
+				//draw hero
+				ctx.strokeStyle = 'rgba(0,255,0,0.5)';
+				ctx.strokeRect( myHero.x, myHero.y, myHero.width, myHero.height );
+				
+				//retrieve all objects in the bounds of the hero 
+				returnObjects = myTree.retrieve( myHero );
+				
+				//flag retrieved objects
+				for( i=0;i<returnObjects.length;i=i+1 ) {
+					returnObjects[ i ].check = true;
+				}
+				
+				
+        /*
+				drawQuadtree( myTree );
+        */
+				drawObjects( myTree );
+				
+				requestAnimFrame( loop );
+			};
+			
+			//create objects
+			createObjects();
+			
+			//init first loop
+			loop();
+			
+			//set eventListener for mousemove
+			document.getElementById('canvas').addEventListener('mousemove', handleMousemove);
+			
+			//make myTree available in global namespace
+			w.myTree = myTree;
+			
+		})(window, Math);
+		</script>
+	
+
+</body></html>
