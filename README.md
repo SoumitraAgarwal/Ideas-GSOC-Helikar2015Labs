@@ -36,3 +36,9 @@
  an alternative to quadTree, as a SpatialHash algorithm.
 
  ----------------------------------------------------------------------
+
+ Random
+
+ Contains random files
+
+-----------------------------------------------------------------------
