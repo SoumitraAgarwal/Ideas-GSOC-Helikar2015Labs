@@ -39,6 +39,7 @@
 
  Random
 
- Contains random files,visualisations,
+ Contains random files,visualisations and materials related to quadTree
+ and spatial hash.
 
 -----------------------------------------------------------------------
