@@ -41,7 +41,8 @@
 
  Contains random files,visualisations and materials related to quadTree
  and spatial hash.
-
+ 	
+ A very specific part of OMG particles catches my attention.
 -----------------------------------------------------------------------
 
 Last Edited: 12th April 2015 by Author Soumitra Agarwal.
