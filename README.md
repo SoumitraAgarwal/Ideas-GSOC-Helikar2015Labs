@@ -46,6 +46,4 @@
  of D3 is aslo appreciated.
 -----------------------------------------------------------------------
 
-Last Edited: 16th April 2015 by Author Soumitra Agarwal.
-
-Thank you!
+Last Edited: 17th April 2015 by Author Soumitra Agarwal.
