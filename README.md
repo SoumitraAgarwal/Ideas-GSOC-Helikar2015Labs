@@ -9,8 +9,8 @@
  ajorly deals with Interactive visualisation of complex network graphs.It works on -
  it's own developed renderer. The mentors for the project presently are Dr.Thomas 
  Helikar and Mr.David Tichy both from the Helikar Labs, University of Nebraska.
- ===================================================================================
-
+ =======================================================================
+ 
  GSOC_IMG
 
  Contains all the images used in the proposal.
@@ -40,7 +40,7 @@
  Random
 
  Contains random files,visualisations and materials related to quadTree and spatial hash.A very specific part of OMG particles catches my attention.A major use of D3 is aslo appreciated.
- 
+
 -----------------------------------------------------------------------
 
 Last Edited: 18th April 2015 by Author Soumitra Agarwal.
