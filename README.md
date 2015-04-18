@@ -10,7 +10,7 @@
  it's own developed renderer. The mentors for the project presently are Dr.Thomas 
  Helikar and Mr.David Tichy both from the Helikar Labs, University of Nebraska.
  =======================================================================
- 
+
  GSOC_IMG
 
  Contains all the images used in the proposal.
@@ -32,8 +32,7 @@
 
  Algorithm.js
 
- Contains my proposed solution to the problem of finding closest node as
- an alternative to quadTree, as a SpatialHash algorithm.
+ Contains my proposed solution to the problem of finding closest node as an alternative to quadTree, as a SpatialHash algorithm.
 
  ----------------------------------------------------------------------
 
