@@ -42,8 +42,7 @@
  Contains random files,visualisations and materials related to quadTree
  and spatial hash.
  	
- A very specific part of OMG particles catches my attention. A major use
- of D3 is aslo appreciated.
+ A very specific part of OMG particles catches my attention. A major use of D3 is aslo appreciated.
 -----------------------------------------------------------------------
 
 Last Edited: 18th April 2015 by Author Soumitra Agarwal.
